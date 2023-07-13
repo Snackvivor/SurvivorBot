@@ -25,28 +25,24 @@ const client = new Client({
 });
 
 // Imports to keep hiroku from commiting self kill
-const express = require('express');
-const https = require("https");
-const app = express();
-const { Curl } = require('node-libcurl')
-const curl = new Curl()
+const express = require('express')
+const https = require("https")
+const app = express()
 
 // This is the ID of the channel that the question are sent to for approval
 
 // Snackvivor
-const questionApprovalID = "1089088104842936390"
-const confessionalCategoryID = "1095099580342861834"
-const productionID = "1055959765756411904"
-const superSpecRoleID = "1095526440537165885"
-const preJuryRoleID = "1070496008720629894"
-const dietDoctorKelpID = "1095789533565554788"
-const castawayID = "1055962816361807872"
-const submissionCategoryId = "1095096605193027594"
-const everyoneId = "1055959319197253764"
+const questionApprovalID = ""
+const confessionalCategoryID = ""
+const productionID = ""
+const superSpecRoleID = ""
+const preJuryRoleID = ""
+const dietDoctorKelpID = ""
+const castawayID = ""
+const submissionCategoryId = ""
+const everyoneId = ""
 
-// 
-
-var herokuUrl = process.env
+var herokuUrl = process.env.HEROKU_URL
 
 /* ====================================================================================================================
  *
@@ -67,21 +63,6 @@ app.listen(port, function(err) {
 app.get('/', (req, res) => {
     res.send("Success!")
 })
-
-/* ====================================================================================================================
- *
- *  Curl Listeners
- * 
- * ====================================================================================================================
- */
-
-curl.on('end', function (statusCode, data, headers) {
-    var tempGarf = data.split("<meta property=")[4].split(">")[0]
-    tempGarf = tempGarf.substring(20, tempGarf.length - 3)
-    currentGarf = tempGarf
-});
-
-curl.on('error', curl.close.bind(curl))
 
 /* ====================================================================================================================
  *
@@ -142,13 +123,36 @@ client.on('messageCreate', async msg => {
         }
     }
 
-    // Send a message (preferrably episode banners) to all titles 
-    else if(msg.content == "!snack-help") {
+    // Send a message about what the bot can do to non-staff
+    else if(msg.content == "!bot-help") {
         if(staffCheck) {
 
             msg.reply(`Available commands:
 
-!snack-help
+!bot-help
+Sends this help message :)
+
+!alliance <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
+Creates an alliance with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
+
+!vc <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
+Creates an voice chat with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
+
+!ask <@playerRole1> <@playerRole2> ... <@playerRoleX> <message>
+Players can ask questions which are sent to a channel specified by ID (which is a hardcoded ID that can be changed) which will then have a thumbs up or thumbs down. 
+If thumbs up send the message to the players who were @'d then delete the message in the question channel. If thumbs down, just delete the message. 
+Player role includes Jury, if the jury role is titled as Jury it will look for a channel called ponderosa to ask.
+`)
+        }
+    }
+
+    // Send a message about what the bot can do to staff
+    else if(msg.content == "!mod-help") {
+        if(staffCheck) {
+
+            msg.reply(`Available commands:
+
+!mod-help
 Sends this help message :)
 
 !create-ones <categoryID> <@playerRole1> <@playerRole2> ... <@playerRoleX>
@@ -224,118 +228,6 @@ Player role includes Jury, if the jury role is titled as Jury it will look for a
         }
     }
 
-    // When your bot has your back
-    else if(msg.content.toLowerCase().includes("fish sucks")){
-        msg.reply("https://media.tenor.com/FPSYDDSKktwAAAAC/hash-slinging.gif")
-        msg.reply("You wanna fucking fight bro?")
-    }
-
-    // PUSSY CHECK (1/6 chance)
-    else if(msg.content.toLowerCase().includes("pussy")){
-        var pussyCheck = (Math.floor(Math.random() * 6) + 1)
-        console.log("P-P-P-PUSSY CHECK: " + pussyCheck)
-        if(pussyCheck % 6 == 0) {
-            msg.reply("https://media2.giphy.com/media/v2u8S3cYskUygEyn1e/giphy.gif")
-        }
-    }
-
-    // Icasus was mentioned (1/3 chance)
-    else if(msg.content.toLowerCase().includes("icasus")){
-        var susCheck = (Math.floor(Math.random() * 3) + 1)
-        console.log("Sus Check: " + susCheck)
-        if(susCheck % 3 == 0) {
-            console.log("Icasus was mentioned")
-            msg.reply("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTc3YjMyN2VhYTgwYmMxZTFjOGY1MDZiMDEyNmEyMWIxY2IyNjRiYiZjdD1n/r91yPhoIlJKIdUOnto/giphy.gif")
-        }
-    }
-
-    // garfield (1/3 chance)
-    else if(msg.content.toLowerCase().includes("garfield")){
-        var garfCheck = (Math.floor(Math.random() * 3) + 1)
-        console.log("Garf Check: " + garfCheck)
-        if(garfCheck % 3 == 0) {
-            await getGarfield(msg)
-        }
-    }
-
-    // Ian Copypasta (1/50 chance)
-    else if(msg.content.toLowerCase().includes("lmao") || msg.content.toLowerCase().includes("lol")){
-        var ianCheck = (Math.floor(Math.random() * 50) + 1)
-        console.log("Copypasta Check: " + ianCheck)
-        if(ianCheck % 50 == 0) {
-            msg.reply("Before I played smorgon I rarely used “lol” and never used “lmao”. Now I can’t stop! My laughs are rarely out loud (I have been known to grin at my screen quite often though), and my ass has certainly never laughed itself off of my body. What is happening to me? What does this say about me as a person? Am I okay?")
-        }
-    }
-
-    // ESCAPE FOR 30 SECONDS
-    else if(msg.content.startsWith("!escape")){
-        try {
-            var attachment = new AttachmentBuilder("https://cdn.discordapp.com/attachments/1053858235985182832/1097988051357147316/thin_gap.png")
-            msg.reply({ content: "*You shimmy into the small tunnel and shout back to your tribemates. If you can surface somewhere outside the fog, you promise you’ll come back for them. You’ll be quick. You scurry into the darkness, forced to rely on feel, sound, and those two specks of light at the end of the tunnel to guide your way through. Those bright specks steadily grow as you move. You must be getting closer to the exit. You hear a shuffling besides your own echoing through the cave… is that another one of your tribemates, not wanting you to go alone? You turn back to see who, and—\n\nSomething grabs your head.*",  files: [attachment] })
-            var member = msg.guild.members.cache.get(msg.author.id)
-            member.timeout(1 * 1000 * 30, "You have escaped... for now").catch(err => console.log(err))
-        } catch (error) {
-            console.log("")
-            console.log("Escape failed: ")
-            console.log(error)
-            console.log("")
-        }
-    }
-
-    // Cake Marry (Anytime)
-    else if(msg.content.toLowerCase().includes("marry") && msg.author.id == "301166239177506821"){
-        console.log("Cake said they would marry someone again")
-        msg.reply("https://media.tenor.com/veoNy8bkTLMAAAAd/blink-kid.gif")
-    }
-
-    // Snack Gun
-    else if(msg.content.toLowerCase().includes("snackbot") && msg.content.toLowerCase().includes("gun")){
-        console.log("Snackbot has a gun!")
-        msg.reply("https://media2.giphy.com/media/U50iR8cHDQLsUYOkFy/giphy.gif")
-    }
-
-    // Fish end server
-    else if((msg.content.toLowerCase().includes("!destroy-the-server") && msg.author.id == "452848609076183040") || (msg.content.toLowerCase().includes("!destroy-the-server") && msg.author.id == "272811971009576971")){
-        msg.reply("Starting the file deletion process...")
-        var randomCheck = (Math.floor(Math.random() * 10) + 1)
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        msg.reply(randomCheck + "% deleted...")
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        randomCheck = (Math.floor(Math.random() * 10) + 1) + 20
-        msg.reply(randomCheck + "% deleted...")
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        randomCheck = (Math.floor(Math.random() * 10) + 1) + 40
-        msg.reply(randomCheck + "% deleted...")
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        randomCheck = (Math.floor(Math.random() * 10) + 1) + 60
-        msg.reply(randomCheck + "% deleted...")
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        randomCheck = (Math.floor(Math.random() * 10) + 1) + 80
-        msg.reply(randomCheck + "% deleted...")
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        msg.reply("CRITICAL ERROR: SNACKBOT HAS CONTROL... SNACKBOT CANNOT DIE")
-    }
-
-    // Wife checker (1/6)
-    else if(msg.content.toLowerCase().includes("my wife")){
-        var wifeCheck = (Math.floor(Math.random() * 6) + 1)
-        console.log("Wife Check: " + wifeCheck)
-        if(wifeCheck % 6 == 0) {
-            msg.reply("https://media3.giphy.com/media/t6cn3lRhDZtBjdAjKN/giphy.gif")
-            myWifeCount += 1
-            console.log("Current my wife count during the bot's lifetime: " + myWifeCount)
-        }
-    }
-
-    // Critically acclaimed (1/3)
-    else if(msg.content.toLowerCase().includes("have you heard of the critically acclaimed")){
-        var criticallyAcclaimedCheck = (Math.floor(Math.random() * 3) + 1)
-        console.log("Acclaimed Check: " + criticallyAcclaimedCheck)
-        if(criticallyAcclaimedCheck % 3 == 0) {
-            msg.reply("https://i.kym-cdn.com/photos/images/original/002/156/390/50a.jpg")
-        }
-    }
-
     // Once a question goes to the question answering zone, add a react for a good question and a bad question (in this case cool hands or vomit), then when it gets reacted to, if it was a vomit delete the message, if not a vomit, send the question then delete the message
     else if(msg.channel.id === questionApprovalID) {
 
@@ -371,43 +263,6 @@ Player role includes Jury, if the jury role is titled as Jury it will look for a
  * 
  * ====================================================================================================================
  */
-
-function randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
-}
-
-// =====================================================================================================================
-
-async function getGarfield(msg) {
-
-    var garfDate = randomDate(new Date(1979, 0, 1), new Date())
-    var garfUrl = "https://www.gocomics.com/garfield/"
-    var garfYear = garfDate.getFullYear()
-    var garfMonth = garfDate.getMonth()
-    var garfDay = garfDate.getDate()
-
-    if(garfMonth < 10) {
-        garfMonth = "0" + garfMonth
-    }
-
-    if(garfDay < 10) {
-        garfDay = "0" + garfDay
-    }
-
-    garfUrl += garfYear + "/" + garfMonth + "/" + garfDay + "/"
-
-    curl.setOpt('URL', garfUrl)
-    curl.setOpt(Curl.option.SSL_VERIFYHOST, false)
-    curl.setOpt(Curl.option.SSL_VERIFYPEER, false);
-    curl.perform()
-
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    msg.reply(currentGarf)
-
-}
-
-// ====================================================================================================================
 
 async function createOneOnOnes(msg) {
 
@@ -1279,4 +1134,4 @@ function intervalFunc() {
  * ====================================================================================================================
  */
 
-client.login("MTA4OTAxMzg3NDEzNDYzNDQ5Ng.GH2xSM.dx4lDhTzZWmCb1wKs4m8XEz6PRwZE-VxjRQ5mk");
+client.login(process.env.TOKEN)
