@@ -29,13 +29,13 @@ const https = require("https")
 const app = express()
 
 // Channel IDs
-const questionApprovalID = ""
-const confessionalCategoryID = ""
+const questionApprovalID = "1129133084957229208"
+const confessionalCategoryID = "1125434619261620364"
 const productionID = "1120827550873174127"
 const superSpecRoleID = "1125270756746600509"
 const preJuryRoleID = ""
 const castawayID = ""
-const submissionCategoryId = ""
+const submissionCategoryId = "1129132595989463100"
 const everyoneId = "1117617213613023362"
 
 // Heroku URL
