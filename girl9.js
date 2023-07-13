@@ -1019,6 +1019,8 @@ async function sendQuestion(msg) {
             }
         }
 
+        console.log(finalChannelList)
+
         // For each person, find their confessional channel and update the embed to make it look individual even when it isn't, then send that bitch on out
         for(var x = 0; x < finalChannelList.length; x++) {
 
