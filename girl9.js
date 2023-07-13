@@ -1009,8 +1009,15 @@ async function sendQuestion(msg) {
                     currString += channelsToSend[y] + "-"
                 }
                 else {
+                    
+                    // This removes an emoji if it is part of the name, in theory it shouldn't be but it takes it off just in case
+                    if(currString.length > 2) {
+                        currString = currString.substring(0, currString.length - 2)
+                    }
+
                     finalChannelList.push(currString.substring(0, currString.length - 1))
                     currString = ""
+
                 }
             } 
             // Adds the Jury only to the final channel list
@@ -1111,4 +1118,4 @@ function intervalFunc() {
  * ====================================================================================================================
  */
 
-client.login(process.env.TOKEN)
+client.login("MTEyOTA2MDEyMjU0MzU0MjM1Mw.GaPMXR.9m9v5An9ey9SMezR_kOqbfJ_nhBJxHYogjsOLk")
