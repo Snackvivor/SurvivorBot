@@ -37,6 +37,7 @@ const preJuryRoleID = "1121857782656798751"
 const castawayID = "1125270674320130078"
 const submissionCategoryId = "1129132595989463100"
 const everyoneId = "1117617213613023362"
+const botUserTag = "SmORGonTemp#8919"
 
 // Heroku URL
 var herokuUrl = process.env.HEROKU_URL
@@ -238,7 +239,7 @@ Player role includes Jury, if the jury role is titled as Jury it will look for a
         var collector = msg.createReactionCollector({ filter, time: 86400000 });
 
         collector.on('collect', async (reaction, user) => {
-            if(user.tag != "The Hash Slinging Snacker#6472"){
+            if(user.tag != botUserTag){
                 if(reaction.emoji.name === '🤙') {
                     sendQuestion(msg)
                     msg.delete()
