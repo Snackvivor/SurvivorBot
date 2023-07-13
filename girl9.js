@@ -40,7 +40,7 @@ const everyoneId = "1117617213613023362"
 const botUserTag = "SmORGonTemp#8919"
 
 // Heroku URL
-var herokuUrl = "https://survivor-discord-bot-5fce77fbce01.herokuapp.com/"//process.env.HEROKU_URL
+var herokuUrl = process.env.HEROKU_URL
 
 /* ====================================================================================================================
  *
@@ -1132,4 +1132,4 @@ function intervalFunc() {
  * ====================================================================================================================
  */
 
-client.login("MTEyOTA2MDEyMjU0MzU0MjM1Mw.GaPMXR.9m9v5An9ey9SMezR_kOqbfJ_nhBJxHYogjsOLk")
+client.login(process.env.TOKEN)
