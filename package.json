@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "express": "^4.18.2",
+    "node-libcurl": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node girl9.js"
+  }
+}
