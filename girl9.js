@@ -31,13 +31,12 @@ const app = express()
 // Channel IDs
 const questionApprovalID = ""
 const confessionalCategoryID = ""
-const productionID = ""
-const superSpecRoleID = ""
+const productionID = "1120827550873174127"
+const superSpecRoleID = "1125270756746600509"
 const preJuryRoleID = ""
-const dietDoctorKelpID = ""
 const castawayID = ""
 const submissionCategoryId = ""
-const everyoneId = ""
+const everyoneId = "1117617213613023362"
 
 // Heroku URL
 var herokuUrl = process.env.HEROKU_URL
@@ -322,11 +321,6 @@ async function createOneOnOnes(msg) {
                                 deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
                             },
                             {
-                                id: dietDoctorKelpID,
-                                allow: [PermissionsBitField.Flags.ViewChannel],
-                                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.AddReactions, PermissionsBitField.Flags.UseExternalEmojis, PermissionsBitField.Flags.UseExternalStickers]
-                            },
-                            {
                                 id: playerARoleId,
                                 allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.AttachFiles, PermissionsBitField.Flags.EmbedLinks, PermissionsBitField.Flags.AddReactions],
                             },
@@ -434,11 +428,6 @@ async function createConfessionals(msg) {
                     {
                         id: everyoneId,
                         deny: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
-                    },
-                    {
-                        id: dietDoctorKelpID,
-                        allow: [PermissionsBitField.Flags.ViewChannel],
-                        deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.AddReactions, PermissionsBitField.Flags.UseExternalEmojis, PermissionsBitField.Flags.UseExternalStickers]
                     },
                     {
                         id: roleId,
@@ -596,11 +585,6 @@ async function createAlliance(msg) {
             overwriteList.push({
                 id: everyoneId,
                 deny: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
-            })
-            overwriteList.push({
-                id: dietDoctorKelpID,
-                allow: [PermissionsBitField.Flags.ViewChannel],
-                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.AddReactions, PermissionsBitField.Flags.UseExternalEmojis, PermissionsBitField.Flags.UseExternalStickers]
             })
             whoToAlly.forEach(ally => {
                 overwriteList.push({
@@ -771,11 +755,6 @@ async function createVC(msg) {
             overwriteList.push({
                 id: everyoneId,
                 deny: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
-            })
-            overwriteList.push({
-                id: dietDoctorKelpID,
-                allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.Connect],
-                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.Speak, PermissionsBitField.Flags.RequestToSpeak, PermissionsBitField.Flags.Stream, PermissionsBitField.Flags.UseEmbeddedActivities]
             })
             whoToAlly.forEach(ally => {
                 overwriteList.push({
