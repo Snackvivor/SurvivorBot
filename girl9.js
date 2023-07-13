@@ -40,7 +40,7 @@ const everyoneId = "1117617213613023362"
 const botUserTag = "SmORGonTemp#8919"
 
 // Heroku URL
-var herokuUrl = process.env.HEROKU_URL
+var herokuUrl = "https://survivor-discord-bot-5fce77fbce01.herokuapp.com/"//process.env.HEROKU_URL
 
 /* ====================================================================================================================
  *
@@ -979,12 +979,26 @@ async function sendConfessionals(msg, location) {
 
 function getNameFromRole(roleString) {
 
+    // Get the string of the role sent in - For example ("Role 18:emoji:, "Role 18 :emoji:")
     var roleArrayWithEmoji = roleString.split(" ")
     var roleWithoutEmoji = ""
-    roleArrayWithEmoji.pop()
+
+    // Take the last word out of the list, it could either be just an emoji OR a word with an emoji on the end
+    var wordWithEmoji = roleArrayWithEmoji.pop()
+    var lastWord = ""
+
+    // If its a word with an emoji on the end, remove the emoji
+    if(wordWithEmoji.length > 2) {
+        lastWord = wordWithEmoji.substring(0, wordWithEmoji.length - 2) + "-"
+    }
+
+    // For all of the words EXCEPT the last word, make it fit the formatting of a channel name
     for(var x = 0; x < roleArrayWithEmoji.length; x++) {
         roleWithoutEmoji += roleArrayWithEmoji[x].trim().toLowerCase() + "-"
     }
+
+    // Add the last word, could be nothing
+    roleWithoutEmoji = roleWithoutEmoji + lastWord
     roleWithoutEmoji = roleWithoutEmoji.substring(0, roleWithoutEmoji.length - 1).trim().toLowerCase()
     return roleWithoutEmoji
     
@@ -1011,11 +1025,9 @@ async function sendQuestion(msg) {
                 else {
                     
                     // This removes an emoji if it is part of the name, in theory it shouldn't be but it takes it off just in case
-                    console.log("CurrString Before: " + currString)
                     if(channelsToSend[y].length > 2) {
-                        currString = channelsToSend[y].substring(0, channelsToSend[y].length - 2) + "-" // Yes this is unnecessary but it makes sense in my head
+                        currString = currString + channelsToSend[y].substring(0, channelsToSend[y].length - 2) + "-" // Yes this is unnecessary but it makes sense in my head
                     }
-                    console.log("CurrString After: " + currString)
 
                     finalChannelList.push(currString.substring(0, currString.length - 1))
                     currString = ""
