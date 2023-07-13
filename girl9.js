@@ -1002,6 +1002,8 @@ async function sendQuestion(msg) {
         var regex = /[\u{1F600}-\u{1F64F}\u{1F910}-\u{1F96B}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu
         var currString = ""
 
+        console.log("channelsToSend: " + channelsToSend)
+
         // Remove the emojis if not jury
         for(var y = 0; y < channelsToSend.length; y++) {
             if(channelsToSend[y] != "Jury") { 
@@ -1009,6 +1011,7 @@ async function sendQuestion(msg) {
                     currString += channelsToSend[y] + "-"
                 }
                 else {
+                    console.log("currString.substring(0, currstring.length - 1): " + currString.substring(0, currString.length - 1))
                     finalChannelList.push(currString.substring(0, currString.length - 1))
                     currString = ""
                 }
@@ -1019,7 +1022,7 @@ async function sendQuestion(msg) {
             }
         }
 
-        console.log(finalChannelList)
+        console.log("finalChannelList: " + finalChannelList)
 
         // For each person, find their confessional channel and update the embed to make it look individual even when it isn't, then send that bitch on out
         for(var x = 0; x < finalChannelList.length; x++) {
