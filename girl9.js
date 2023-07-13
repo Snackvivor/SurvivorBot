@@ -1,5 +1,4 @@
 //====================================================================================================================
-//
 //  Discord Survivor Bot 
 //  Author: Fish
 //  Version: 1.0.0
@@ -29,9 +28,7 @@ const express = require('express')
 const https = require("https")
 const app = express()
 
-// This is the ID of the channel that the question are sent to for approval
-
-// Snackvivor
+// Channel IDs
 const questionApprovalID = ""
 const confessionalCategoryID = ""
 const productionID = ""
@@ -42,6 +39,7 @@ const castawayID = ""
 const submissionCategoryId = ""
 const everyoneId = ""
 
+// Heroku URL
 var herokuUrl = process.env.HEROKU_URL
 
 /* ====================================================================================================================
@@ -1013,7 +1011,6 @@ function getNameFromRole(roleString) {
 }
 
 // ====================================================================================================================
-
 
 async function sendQuestion(msg) {
 
