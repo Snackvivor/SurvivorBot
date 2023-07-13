@@ -1011,8 +1011,8 @@ async function sendQuestion(msg) {
                 else {
                     
                     // This removes an emoji if it is part of the name, in theory it shouldn't be but it takes it off just in case
-                    if(currString.length > 2) {
-                        currString = currString.substring(0, currString.length - 2)
+                    if(channelsToSend[y].length > 2) {
+                        currString = currString.substring(0, currString.length - 2) + "-" // Yes this is unnecessary but it makes sense in my head
                     }
 
                     finalChannelList.push(currString.substring(0, currString.length - 1))
