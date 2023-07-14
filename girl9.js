@@ -981,15 +981,25 @@ function getNameFromRole(roleString) {
 
     // Get the string of the role sent in - For example ("Role 18:emoji:, "Role 18 :emoji:")
     var roleArrayWithEmoji = roleString.split(" ")
+
+    // The string that will be added to and returned at the end
     var roleWithoutEmoji = ""
+    
+    // The string that will at some point contain the last word in the split without an emoji
+    var lastWord = ""
 
     // Take the last word out of the list, it could either be just an emoji OR a word with an emoji on the end
     var wordWithEmoji = roleArrayWithEmoji.pop()
-    var lastWord = ""
-
-    // If its a word with an emoji on the end, remove the emoji
-    if(wordWithEmoji.length > 2) {
-        lastWord = wordWithEmoji.substring(0, wordWithEmoji.length - 2) + "-"
+    
+    // Check to see if the final word is or has an emoji
+    if(checkForEmoji(wordWithEmoji)) {
+        // If its a word with an emoji on the end, remove the emoji
+        if(wordWithEmoji.length > 2) {
+            lastWord = wordWithEmoji.substring(0, wordWithEmoji.length - 2) + "-"
+        }
+    }
+    else {
+        lastWord = wordWithEmoji + "-"
     }
 
     // For all of the words EXCEPT the last word, make it fit the formatting of a channel name
@@ -1002,6 +1012,19 @@ function getNameFromRole(roleString) {
     roleWithoutEmoji = roleWithoutEmoji.substring(0, roleWithoutEmoji.length - 1).trim().toLowerCase()
     return roleWithoutEmoji
     
+}
+
+// ====================================================================================================================
+
+function checkForEmoji(str) {
+
+    var regex = /[\u{1F600}-\u{1F64F}\u{1F910}-\u{1F96B}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu
+    
+    if(regex.test(str)) {
+        return true
+    }
+    return false
+
 }
 
 // ====================================================================================================================
