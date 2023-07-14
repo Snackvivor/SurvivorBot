@@ -33,7 +33,6 @@ const questionApprovalID = "1129133084957229208"
 const confessionalCategoryID = "1125434619261620364"
 const productionID = "1120827550873174127"
 const superSpecRoleID = "1125270756746600509"
-const preJuryRoleID = "1121857782656798751"
 const castawayID = "1125270674320130078"
 const submissionCategoryId = "1129132595989463100"
 const everyoneId = "1117617213613023362"
@@ -310,16 +309,11 @@ async function createOneOnOnes(msg) {
                             {
                                 id: superSpecRoleID,
                                 allow: [PermissionsBitField.Flags.ViewChannel],
-                                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
+                                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.AddReactions]
                             },
                             {
                                 id: everyoneId,
                                 deny: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
-                            },
-                            {
-                                id: preJuryRoleID,
-                                allow: [PermissionsBitField.Flags.ViewChannel],
-                                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
                             },
                             {
                                 id: playerARoleId,
@@ -418,11 +412,6 @@ async function createConfessionals(msg) {
                 msg.guild.channels.create({ name: currChannel, type: ChannelType.GuildText, parent: confessionalCategoryID, permissionOverwrites: [
                     {
                         id: superSpecRoleID,
-                        allow: [PermissionsBitField.Flags.ViewChannel],
-                        deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
-                    },
-                    {
-                        id: preJuryRoleID,
                         allow: [PermissionsBitField.Flags.ViewChannel],
                         deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
                     },
@@ -575,11 +564,6 @@ async function createAlliance(msg) {
             var overwriteList = []
             overwriteList.push({
                 id: superSpecRoleID,
-                allow: [PermissionsBitField.Flags.ViewChannel],
-                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
-            })
-            overwriteList.push({
-                id: preJuryRoleID,
                 allow: [PermissionsBitField.Flags.ViewChannel],
                 deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads]
             })
@@ -745,11 +729,6 @@ async function createVC(msg) {
             var overwriteList = []
             overwriteList.push({
                 id: superSpecRoleID,
-                allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.Connect],
-                deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.Speak, PermissionsBitField.Flags.RequestToSpeak, PermissionsBitField.Flags.Stream, PermissionsBitField.Flags.UseEmbeddedActivities]
-            })
-            overwriteList.push({
-                id: preJuryRoleID,
                 allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.Connect],
                 deny: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.SendMessagesInThreads, PermissionsBitField.Flags.CreatePublicThreads, PermissionsBitField.Flags.CreatePrivateThreads, PermissionsBitField.Flags.Speak, PermissionsBitField.Flags.RequestToSpeak, PermissionsBitField.Flags.Stream, PermissionsBitField.Flags.UseEmbeddedActivities]
             })
