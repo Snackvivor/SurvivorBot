@@ -139,9 +139,8 @@ Creates an alliance with the specified members for the specified tribe - The tri
 Creates an voice chat with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
 
 !ask <@playerRole1> <@playerRole2> ... <@playerRoleX> <message>
-Players can ask questions which are sent to a channel specified by ID (which is a hardcoded ID that can be changed) which will then have a thumbs up or thumbs down. 
-If thumbs up send the message to the players who were @'d then delete the message in the question channel. If thumbs down, just delete the message. 
-Player role includes Jury, if the jury role is titled as Jury it will look for a channel called ponderosa to ask.
+Spectators can ask questions which when approved are sent to the specified player(s)
+
 `)
         }
     }
