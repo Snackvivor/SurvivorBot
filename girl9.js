@@ -129,6 +129,9 @@ client.on('messageCreate', async msg => {
 !bot-help
 Sends this help message :)
 
+!parchement
+Returns the image of the parchment for the season!
+
 !alliance <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
 Creates an alliance with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
 
@@ -223,6 +226,11 @@ Player role includes Jury, if the jury role is titled as Jury it will look for a
         if(staffCheck) {
             sendConfessionals(msg, "tribe")
         }
+    }
+
+    // Send a message to tribe specific confessionals
+    else if(msg.content.startsWith("!parchment")){
+        msg.reply("https://i.imgur.com/jHu6lTW.png")
     }
 
     // Once a question goes to the question answering zone, add a react for a good question and a bad question (in this case cool hands or vomit), then when it gets reacted to, if it was a vomit delete the message, if not a vomit, send the question then delete the message
@@ -595,7 +603,7 @@ async function createAlliance(msg) {
             console.log("There was an issue with the channel creation step for Alliances:\n")
             console.log(error)
             console.log("")
-            msg.reply("Failed to create alliance - Please contact production!")
+            msg.reply("Failed to create alliance - Please check to make sure that there are no extra spaces and that you are using player roles not their usernames - If you are still having issues please contact production!")
         }
 
     } catch (error) {
@@ -603,7 +611,7 @@ async function createAlliance(msg) {
         console.log("CreateAlliances failed to properly execute:\n")
         console.log(error)
         console.log("")
-        msg.reply("Failed to create alliance - Please contact production!")
+        msg.reply("Failed to create alliance -  Please check to make sure that there are no extra spaces and that you are using player roles not their usernames - If you are still having issues please contact production!")
     }
 
 }
@@ -758,7 +766,7 @@ async function createVC(msg) {
             console.log("There was an issue with the channel creation step for VCs:\n")
             console.log(error)
             console.log("")
-            msg.reply("Failed to create VC - Please contact production!")
+            msg.reply("Failed to create VC - Please check to make sure that there are no extra spaces and that you are using player roles not their usernames - If you are still having issues please contact production!")
         }
 
     } catch (error) {
@@ -766,7 +774,7 @@ async function createVC(msg) {
         console.log("CreateVCs failed to properly execute:\n")
         console.log(error)
         console.log("")
-        msg.reply("Failed to create VC - Please contact production!")
+        msg.reply("Failed to create VC - Please check to make sure that there are no extra spaces and that you are using player roles not their usernames - If you are still having issues please contact production!")
     }
 
 }
@@ -816,7 +824,7 @@ async function askQuestionToQuestionChannel(msg) {
         console.log("There was an issue with the question being asked going to the question channel:\n")
         console.log(error)
         console.log("")
-        msg.reply("Failed to generate question for approval - Please contact production!")
+        msg.reply("Failed to generate question for approval -  Please check to make sure that there are no extra spaces and that you are using player roles not their usernames - If you are still having issues please contact production!")
     }
 
 }
