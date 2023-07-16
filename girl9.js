@@ -129,7 +129,7 @@ client.on('messageCreate', async msg => {
 !bot-help
 Sends this help message :)
 
-!parchement
+!parchment
 Returns the image of the parchment for the season!
 
 !alliance <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
@@ -467,6 +467,10 @@ async function createAlliance(msg) {
         var allianceCommand = msg.content.split(" ")
         allianceCommand.shift()
 
+        console.log("Alliance Author: " + allianceAuthor)
+        console.log("Alliance Author Name: " + allianceAuthorName)
+        console.log("Alliance Creator PlayerRole: " + allianceCreatorPlayerRole)
+
         // Get the tribe role and the name of the category for the tribe alliances
         var tribeRoleId = allianceCommand.shift()
         tribeRoleId = tribeRoleId.substring(3, tribeRoleId.length - 1)
@@ -478,8 +482,13 @@ async function createAlliance(msg) {
         var staffCheck = await isStaff(msg)
         if(!staffCheck) {
             for(var x = 0; x < allianceCommand.length; x++) {
+
                 var currentAllyInAllianceCommand = allianceCommand[x].substring(3, allianceCommand[x].length - 1)
+                console.log("currAlly: " + currentAllyInAllianceCommand)
                 var currentAllyInAllianceCommandRole = msg.guild.roles.cache.get(currentAllyInAllianceCommand)
+                console.log("currAllyRole: " + currentAllyInAllianceCommandRole)
+                console.log("allianceCreatorPlayerRoleName: " + allianceCreatorPlayerRole)
+
                 if(allianceCreatorPlayerRole.name == currentAllyInAllianceCommandRole.name) {
                     doesAllyExist = true
                     break
@@ -512,6 +521,8 @@ async function createAlliance(msg) {
             whoToAlly.push(allianceCreatorPlayerRole)
 
         }
+
+        console.log("Who To Ally: " + whoToAlly)
 
         // For the remaining people included, see if they are actually in the tribe, if so add them to the list
         var counter = 0
@@ -560,6 +571,8 @@ async function createAlliance(msg) {
             channelName = channelName + getNameFromRole(ally.name) + "-"
         })
         channelName = channelName.substring(0, channelName.length - 1).toLowerCase().trim()
+        
+        console.log("ChannelName: " + channelName)
 
         try {
 
