@@ -122,7 +122,6 @@ client.on('messageCreate', async msg => {
 
     // Send a message about what the bot can do to non-staff
     else if(msg.content == "!bot-help") {
-        if(staffCheck) {
 
             msg.reply(`Available commands:
 
@@ -134,15 +133,17 @@ Returns the image of the parchment for the season!
 
 !alliance <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
 Creates an alliance with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
+Example: !allance @Squirtle @FishRole @ZachRole @IanRole
 
 !vc <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
 Creates an voice chat with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
+Example: !vc @Squirtle @FishRole @ZachRole @IanRole
 
 !ask <@playerRole1> <@playerRole2> ... <@playerRoleX> <message>
 Spectators can ask questions which when approved are sent to the specified player(s)
 
 `)
-        }
+        
     }
 
     // Send a message about what the bot can do to staff
