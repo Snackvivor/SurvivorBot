@@ -817,17 +817,19 @@ async function askQuestionToQuestionChannel(msg) {
         }
 
         // Setup information to use for the embed!
-        var author = msg.author.username + " has asked a question to..."
+        var author = msg.author.username + " has asked you a question!"
         var thumbnail = "https://cdn.discordapp.com/avatars/"+msg.author.id+"/"+msg.author.avatar+".jpeg"
+        /*
         var title = ""
         for(var x = 0; x < whoToAsk.length; x++) { 
             var roleInfo = whoToAsk[x].substring(3, whoToAsk[x].length - 1)
             var currRole = msg.guild.roles.cache.get(roleInfo).name
             title += currRole + " "
-        }
+        }*/
 
         // Create the embed and send it on it's way!
-        var embed = new EmbedBuilder().setColor(0x197214).setAuthor({ name: author, iconURL: null }).setTitle(title).setDescription(messageString).setThumbnail(thumbnail)
+        //var embed = new EmbedBuilder().setColor(0x197214).setAuthor({ name: author, iconURL: null }).setTitle(title).setDescription(messageString).setThumbnail(thumbnail)
+        var embed = new EmbedBuilder().setColor(0x197214).setAuthor({ name: author, iconURL: null }).setDescription(messageString).setThumbnail(thumbnail)
         var askChannel = await client.channels.fetch(questionApprovalID)
         askChannel.send({ embeds: [embed] }).catch(console.error)
 
