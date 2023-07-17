@@ -1078,7 +1078,7 @@ async function sendQuestion(msg) {
                 console.log("Ask question currChannel: " + currChannel)
                 var id = msg.guild.channels.cache.find(channel => channel.name === currChannel)
                 var currEmbed = new EmbedBuilder(msg.embeds[0])
-                currEmbed.setTitle("")
+                currEmbed.setTitle(playerName.replace(/-/g, ' '))
                 console.log("Ask question id: " + id)
                 id.send({embeds: [currEmbed]}).catch(console.error)
 
