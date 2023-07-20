@@ -104,15 +104,15 @@ client.on('messageCreate', async msg => {
     else if(msg.content.includes("taradiddle")){
         if(staffCheck) {
             await delay(5000)
-            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
+            msg.guild.channels.cache.find(i => i.name === 'f18-challenge').send("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
             await delay(7000)
-            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
+            msg.guild.channels.cache.find(i => i.name === 'f18-challenge').send("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
             await delay(7000)
-            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMALIES OCCURRING ACROSS THE REGION.")
+            msg.guild.channels.cache.find(i => i.name === 'f18-challenge').send("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMALIES OCCURRING ACROSS THE REGION.")
             await delay(7000)
-            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE <#1124840187428622488> CHANNEL.")
+            msg.guild.channels.cache.find(i => i.name === 'f18-challenge').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE <#1124840187428622488> CHANNEL.")
             await delay(7000)
-            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
+            msg.guild.channels.cache.find(i => i.name === 'f18-challenge').send("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
         }
     }
 
