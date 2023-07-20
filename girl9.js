@@ -108,7 +108,7 @@ client.on('messageCreate', async msg => {
         await delay(5000)
         msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMALIES OCCURRING ACCORSS THE REGION.")
         await delay(5000)
-        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE @announcements CHANNEL.")
+        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE #announcements CHANNEL.")
         await delay(5000)
         msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
     }
