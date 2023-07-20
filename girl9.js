@@ -95,7 +95,7 @@ client.on('messageCreate', async msg => {
     }
 
     // Create a confessional for every listed player role
-    else if(msg.content.startsWith("!select")){
+    else if(msg.content.startsWith("?select")){
         selectCommand(msg)
     }
 
@@ -153,6 +153,10 @@ Sends this help message :)
 !parchment
 Returns the image of the parchment for the season!
 
+?select value,value2,value3 ... ,valueX
+Randomly selects one of the values in the provided list separated by commas
+(It has a ? not a ! because of Carl-Bot)
+
 !alliance <@tribe> <@playerRole1> <@playerRole2> ... <@playerRoleX>
 Creates an alliance with the specified members for the specified tribe - The tribe role is needed to ensure that players don't create an alliance for people in other tribes
 Example: !allance @Squirtle @FishRole @ZachRole @IanRole
@@ -177,7 +181,7 @@ Spectators can ask questions which when approved are sent to the specified playe
 !mod-help
 Sends this help message :)
 
-!select value,value2,value3 ... ,valueX
+?select value,value2,value3 ... ,valueX
 Randomly selects one of the values in the provided list separated by commas
 
 !create-ones <categoryID> <@playerRole1> <@playerRole2> ... <@playerRoleX>
@@ -1159,12 +1163,6 @@ async function selectCommand(msg) {
     chooseList.shift()
     
     var index = Math.floor(Math.random() * chooseList.length)
-    var counter = 0
-    console.log(chooseList.length)
-    while(chooseList[counter]){
-        console.log(chooseList[counter])
-        counter += 1
-    }
     msg.reply("I select **" + chooseList[index] + "!**")
 
 }
