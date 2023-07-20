@@ -28,6 +28,8 @@ const express = require('express')
 const https = require("https")
 const app = express()
 
+const delay = ms => new Promise(res => setTimeout(res, ms))
+
 // Channel IDs
 const questionApprovalID = "1129133084957229208"
 const confessionalCategoryID = "1125434619261620364"
@@ -100,15 +102,15 @@ client.on('messageCreate', async msg => {
     }
 
     else if(msg.content.startsWith("!magneton-message")){
-        msg.reply("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
-        new Promise(res => setTimeout(res, 5000))
-        msg.reply("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
-        new Promise(res => setTimeout(res, 5000))
-        msg.reply("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMOLYS OCCURRING ACCORSS THE REGION.")
-        new Promise(res => setTimeout(res, 5000))
-        msg.reply("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE @announcements CHANNEL.")
-        new Promise(res => setTimeout(res, 5000))
-        msg.reply("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
+        msg.guild.channels.cache.find(i => i.name === 'production-general').send("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
+        await delay(5000)
+        msg.guild.channels.cache.find(i => i.name === 'production-general').send("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
+        await delay(5000)
+        msg.guild.channels.cache.find(i => i.name === 'production-general').send("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMOLYS OCCURRING ACCORSS THE REGION.")
+        await delay(5000)
+        msg.guild.channels.cache.find(i => i.name === 'production-general').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE @announcements CHANNEL.")
+        await delay(5000)
+        msg.guild.channels.cache.find(i => i.name === 'production-general').send("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
     }
 
     // Create one on ones for every player
