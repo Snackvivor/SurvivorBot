@@ -94,6 +94,11 @@ client.on('messageCreate', async msg => {
         }
     }
 
+    // Create a confessional for every listed player role
+    else if(msg.content.startsWith("!choose")){
+        chooseCommand(msg)
+    }
+
     // Create a submission channel for every listed player role
     else if(msg.content.startsWith("!create-subs")){
         if(staffCheck) {
@@ -1140,6 +1145,24 @@ async function isStaff(msg) {
         console.log(error)
         return false
     }
+
+}
+
+// ====================================================================================================================
+
+async function chooseCommand(msg) {
+
+    var chooseList = msg.content.split(/[ ;]/g)
+    chooseList.shift()
+    
+    var index = Math.floor(Math.random() * chooseList.length)
+    var counter = 0
+    console.log(chooseList.length)
+    while(chooseList[counter]){
+        console.log(chooseList[counter])
+        counter += 1
+    }
+    msg.reply("I choose **" + chooseList[index] + "!**")
 
 }
 
