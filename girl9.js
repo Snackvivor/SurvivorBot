@@ -177,6 +177,9 @@ Spectators can ask questions which when approved are sent to the specified playe
 !mod-help
 Sends this help message :)
 
+!select value,value2,value3 ... ,valueX
+Randomly selects one of the values in the provided list separated by commas
+
 !create-ones <categoryID> <@playerRole1> <@playerRole2> ... <@playerRoleX>
 Create one-on-ones between the listed players in a specific category. Does not create duplicates!
 
@@ -1152,7 +1155,7 @@ async function isStaff(msg) {
 
 async function selectCommand(msg) {
 
-    var chooseList = msg.content.split(/[ ;]/g)
+    var chooseList = msg.content.split(/[ ,]/g)
     chooseList.shift()
     
     var index = Math.floor(Math.random() * chooseList.length)
