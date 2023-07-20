@@ -99,6 +99,18 @@ client.on('messageCreate', async msg => {
         }
     }
 
+    else if(msg.content.startsWith("!magneton-message")){
+        msg.reply("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
+        new Promise(res => setTimeout(res, 5000))
+        msg.reply("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
+        new Promise(res => setTimeout(res, 5000))
+        msg.reply("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMOLYS OCCURRING ACCORSS THE REGION.")
+        new Promise(res => setTimeout(res, 5000))
+        msg.reply("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE @announcements CHANNEL.")
+        new Promise(res => setTimeout(res, 5000))
+        msg.reply("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
+    }
+
     // Create one on ones for every player
     else if(msg.content.startsWith("!create-ones")){
         if(staffCheck) {
