@@ -102,15 +102,17 @@ client.on('messageCreate', async msg => {
     }
 
     else if(msg.content.startsWith("!magneton-message")){
-        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
-        await delay(5000)
-        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
-        await delay(5000)
-        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMALIES OCCURRING ACCORSS THE REGION.")
-        await delay(5000)
-        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE #announcements CHANNEL.")
-        await delay(5000)
-        msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
+        if(staffCheck) {
+            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# ATTENTION STUDENTS AND FACULTY BZZT THIS IS NOT A DRILL.")
+            await delay(5000)
+            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE EVACUATE THE SMORGON BZZT ACADEMY AT ONCE.")
+            await delay(5000)
+            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# THERE ARE BZZT DANGEROUS PARADOXICAL ANOMALIES OCCURRING ACCORSS THE REGION.")
+            await delay(5000)
+            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# MORE INFORMATION ON THESE UNUSUAL AND ALARMING BZZT PHENOMENONS CAN BE FOUND IN THE #announcements CHANNEL.")
+            await delay(5000)
+            msg.guild.channels.cache.find(i => i.name === 'host-chat').send("# PLEASE HURRY THERE AND AWAIT FURTHER BZZT INSTRUCTIONS.")
+        }
     }
 
     // Create one on ones for every player
