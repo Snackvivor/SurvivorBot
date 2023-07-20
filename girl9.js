@@ -462,6 +462,8 @@ async function createAlliance(msg) {
         // Get the player role of the author of the message
         var allianceAuthor = msg.guild.members.cache.get(msg.author.id)
         console.log("nick: " + allianceAuthor.nickname)
+        console.log("nickDisplay: " + allianceAuthor.user.displayName)
+        console.log("nickGlobal: " + allianceAuthor.user.globalName)
         console.log("usern: " + allianceAuthor.user.username)
         var allianceAuthorName = allianceAuthor.nickname ? allianceAuthor.nickname : allianceAuthor.user.username
         var allianceCreatorPlayerRole = allianceAuthor.roles.cache.find(role => role.name.includes(allianceAuthorName))
