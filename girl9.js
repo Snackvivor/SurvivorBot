@@ -304,7 +304,7 @@ async function createOneOnOnes(msg) {
         
         // Get the question and split it by spaces, then take out the !ask part
         await msg.guild.members.fetch()
-        var onesCommand = msg.content.split(" ")
+        var onesCommand = msg.content.split(/\s+/)
         onesCommand.shift()
         var categoryID = onesCommand[0]
         onesCommand.shift()
@@ -391,7 +391,7 @@ async function createSubs(msg) {
         
         // Get the question and split it by spaces, then take out the !ask part
         await msg.guild.members.fetch()
-        var subCommand = msg.content.split(" ")
+        var subCommand = msg.content.split(/\s+/)
         subCommand.shift()
         
         for(var x = 0; x < subCommand.length; x++) {
@@ -437,7 +437,7 @@ async function createConfessionals(msg) {
         
         // Get the question and split it by spaces, then take out the !ask part
         await msg.guild.members.fetch()
-        var confCommand = msg.content.split(" ")
+        var confCommand = msg.content.split(/\s+/)
         confCommand.shift()
         
         for(var x = 0; x < confCommand.length; x++) {
@@ -498,7 +498,7 @@ async function createAlliance(msg) {
         var allianceCreatorPlayerRole = allianceAuthor.roles.cache.find(role => role.name.includes(allianceAuthorName))
         
         // Get the question and split it by spaces, then take out the !ask part
-        var allianceCommand = msg.content.split(" ")
+        var allianceCommand = msg.content.split(/\s+/)
         allianceCommand.shift()
 
         console.log("Alliance Author: " + allianceAuthor)
@@ -509,7 +509,7 @@ async function createAlliance(msg) {
         var tribeRoleId = allianceCommand.shift()
         tribeRoleId = tribeRoleId.substring(3, tribeRoleId.length - 1)
         var tribeRole = msg.guild.roles.cache.get(tribeRoleId)
-        var tribeCategoryName = tribeRole.name.split(" ")[0].trim() + " Alliances"
+        var tribeCategoryName = tribeRole.name.split(/\s+/)[0].trim() + " Alliances"
 
         // Check to see if user included themselves
         var doesAllyExist = false
@@ -676,14 +676,14 @@ async function createVC(msg) {
         var allianceCreatorPlayerRole = allianceAuthor.roles.cache.find(role => role.name.includes(allianceAuthorName))  
         
         // Get the question and split it by spaces, then take out the !ask part
-        var allianceCommand = msg.content.split(" ")
+        var allianceCommand = msg.content.split(/\s+/)
         allianceCommand.shift()
 
         // Get the tribe role and the name of the category for the tribe alliances
         var tribeRoleId = allianceCommand.shift()
         tribeRoleId = tribeRoleId.substring(3, tribeRoleId.length - 1)
         var tribeRole = msg.guild.roles.cache.get(tribeRoleId)
-        var tribeCategoryName = tribeRole.name.split(" ")[0].trim() + " Alliances"
+        var tribeCategoryName = tribeRole.name.split(/\s+/)[0].trim() + " Alliances"
 
         // Check to see if user included themselves
         var doesAllyExist = false
@@ -832,7 +832,7 @@ async function askQuestionToQuestionChannel(msg) {
     try {
         
         // Get the question and split it by spaces, then take out the !ask part
-        var question = msg.content.split(" ")
+        var question = msg.content.split(/\s+/)
         question.shift()
 
         // Get the list of people the question is being asked to
@@ -883,7 +883,7 @@ async function sendConfessionals(msg, location) {
     try {
         
         // Get the question and split it by spaces, then take out the !ask part
-        var bannerCommand = msg.content.split(" ")
+        var bannerCommand = msg.content.split(/\s+/)
         bannerCommand.shift()
 
         // Determine which confessionals should be sent to - Options are: specific, tribe, all, alive, dead
@@ -1014,7 +1014,7 @@ async function sendConfessionals(msg, location) {
 function getNameFromRole(roleString) {
 
     // Get the string of the role sent in - For example ("Role 18:emoji:, "Role 18 :emoji:")
-    var roleArrayWithEmoji = roleString.split(" ")
+    var roleArrayWithEmoji = roleString.split(/\s+/)
 
     // The string that will be added to and returned at the end
     var roleWithoutEmoji = ""
@@ -1068,7 +1068,7 @@ async function sendQuestion(msg) {
     try {
 
         // Get a list of the people to send questions to
-        var channelsToSend = msg.embeds[0].title.split(" ")
+        var channelsToSend = msg.embeds[0].title.split(/\s+/)
         var finalChannelList = []
         var regex = /[\u{1F600}-\u{1F64F}\u{1F910}-\u{1F96B}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}]/gu
         var currString = ""
